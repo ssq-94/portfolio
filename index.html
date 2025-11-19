@@ -1,0 +1,2051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sara Alqethami - Portfolio</title>
+    <!-- أيقونات Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <style>
+        /* ========= الألوان الرئيسية (غيّريها براحتك) ========= */
+        :root {
+            --primary: #4f46e5;         /* اللون الأساسي للأزرار والعناوين */
+            --primary-light: #4f46e5;   /* درجة فاتحة من اللون الأساسي */
+            --secondary: #4f46e5;       /* لون ثانوي (أقسام / عناوين فرعية) */
+            --dark: #1f2937;            /* لون النص الداكن */
+            --light: #f9fafb;           /* خلفية فاتحة */
+            --gray: #9ca3af;            /* نصوص ثانوية */
+            --accent: #ec4899;          /* لون مساعد (بنفسجي/وردي) */
+            --gradient: linear-gradient(135deg, #4f46e5, #ec4899); /* تدرج */
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* وضع الداكن (يفعّله الجافاسكربت بإضافة كلاس dark-theme على body) */
+        .dark-theme {
+            --primary: #818cf8;
+            --primary-light: #a5b4fc;
+            --secondary: #34d399;
+            --dark: #f3f4f6;
+            --light: #111827;
+            --gray: #6b7280;
+            --card-bg: rgba(17, 24, 39, 0.9);
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ========= أساسيات عامة ========= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            transition: var(--transition);
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(circle at 5% 10%, rgba(79, 70, 229, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.05) 0%, transparent 20%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 40px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        h4 {
+            font-size: 1.3rem;
+            color: var(--secondary);
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--accent);
+        }
+
+        /* ========= أزرار ========= */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* ========= كروت عامة ========= */
+        .card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* ========= عناوين الأقسام ========= */
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: var(--gray);
+        }
+
+        /* ========= الهيدر ========= */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .dark-theme header {
+            background: rgba(17, 24, 39, 0.95);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: var(--gradient);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(30deg);
+        }
+/* ========= HERO (HOME) ========= */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 100px 0 60px;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* ===== النص المتحرك (مرحبا بكل اللغات) ===== */
+.hero-animation-text {
+    font-size: 3rem;
+    font-weight: 700;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeUp 0.8s ease-out forwards;
+}
+
+/* الاسم */
+.hero-title {
+    font-size: 3.2rem;
+    font-weight: 800;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    margin-top: 10px;
+
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeUp 0.8s ease-out forwards;
+    animation-delay: 0.25s;
+}
+
+/* الوظيفة */
+.hero-subtitle {
+    font-size: 1.4rem;
+    color: var(--primary);
+    margin-top: 10px;
+
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeUp 0.8s ease-out forwards;
+    animation-delay: 0.45s;
+}
+
+/* النص */
+.hero-lead {
+    font-size: 1.1rem;
+    color: var(--gray);
+    margin-top: 15px;
+
+    opacity: 0;
+    animation: fadeIn 0.9s ease-out forwards;
+    animation-delay: 0.65s;
+}
+
+/* الأزرار */
+.hero-btns {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 25px;
+}
+
+.btn {
+    padding: 12px 28px;
+    background: var(--gradient);
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    padding: 12px 28px;
+    border: 2px solid var(--primary);
+    border-radius: 8px;
+    color: var(--primary);
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.btn-outline:hover {
+    background: var(--primary);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+
+/* ===== Keyframes ===== */
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .hero-animation-text {
+        font-size: 2.2rem;
+    }
+    .hero-title {
+        font-size: 2.4rem;
+    }
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+}
+
+
+/* ========= ABOUT SECTION ========= */
+
+/* ليّاوت اليسار (النبذة) + اليمين (الشهادات) */
+.about-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1.6fr);
+    gap: 40px;
+    align-items: flex-start;
+}
+
+/* النبذة */
+.about-main p {
+    margin-bottom: 12px;
+    text-align: justify;
+}
+
+/* ========== الشهادات ========== */
+.about-certs h4 {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: var(--secondary);
+}
+
+.about-certs-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+@media (min-width: 900px) {
+    .about-certs-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.cert-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: var(--card-bg);
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-height: 110px; /* يثبت الطول */
+    flex-direction: row;
+    height: 120px;
+}
+
+
+.cert-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.18);
+}
+
+.cert-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gradient);
+    color: #fff;
+    flex-shrink: 0;
+    font-size: 0.95rem;
+}
+
+.cert-info h5 {
+    font-size: 0.98rem;
+    margin-bottom: 3px;
+}
+
+.cert-info p {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+    color: var(--gray);
+}
+
+/* ========== مربع الإحصائيات بالنص ========== */
+.about-stats-wrapper {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+}
+
+.about-stats-box {
+    background: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 20px 26px;
+
+    display: grid;
+    grid-template-columns: repeat(4, minmax(90px, 1fr));
+    gap: 20px;
+
+    max-width: 650px;
+    width: 100%;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-item h4 {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 5px;
+}
+
+.stat-item p {
+    margin: 0;
+    color: var(--gray);
+    font-size: 0.95rem;
+}
+
+/* ========== Responsive تصميم متجاوب ========== */
+@media (max-width: 768px) {
+    .about-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .about-stats-box {
+        grid-template-columns: repeat(2, minmax(90px, 1fr));
+        max-width: 100%;
+    }
+}
+
+
+
+        /* ========= Experience (الـ Timeline) ========= */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--gradient);
+        }
+
+        .timeline-item {
+            width: 50%;
+            padding: 30px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 50px;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 50px;
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: var(--gradient);
+            border-radius: 50%;
+            position: absolute;
+            top: 40px;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -10px;
+        }
+
+        .timeline-date {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 8px;
+        }
+
+        /* ========= Skills ========= */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            margin-bottom: 40px;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .dark-theme .skill-bar {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: var(--gradient);
+            border-radius: 4px;
+            position: relative;
+            width: 0; /* يتغيّر بالأنيميشن */
+            transition: width 1.5s ease-in-out;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        /* ========= Projects ========= */
+        .project-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--gray);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--gradient);
+            color: white;
+            border-color: transparent;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            height: 350px;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 25px;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-overlay {
+            transform: translateY(0);
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.1);
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .project-tag {
+            background: var(--primary);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .view-project {
+            margin-top: 15px;
+            display: inline-block;
+            color: var(--primary-light);
+            font-weight: 600;
+        }
+
+        /* ========= Modal للمشاريع ========= */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 50px 20px;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 15px;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: var(--accent);
+        }
+
+        .modal-image {
+            width: 100%;
+            max-width: 800px;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin: 0 auto 20px;
+            box-shadow: var(--shadow);
+            display: block;
+        }
+
+        .modal-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .modal-gallery img {
+            width: 100%;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        /* ========= Publications ========= */
+        .publications-list {
+            list-style: none;
+            margin: 0 0 30px 0;
+            padding: 0;
+        }
+
+        .publication-item {
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            background: var(--card-bg);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .publication-item h4 {
+            margin-bottom: 5px;
+            font-size: 1.05rem;
+        }
+
+        .publication-meta {
+            font-size: 0.95rem;
+            color: var(--gray);
+        }
+
+        .publications-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .publications-footer p {
+            margin-bottom: 10px;
+        }
+
+        .publications-footer .btn-outline {
+        color: var(--primary);
+        border: 1px solid var(--primary);
+        background: transparent;
+        }
+
+        .publications-footer .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+
+        /* ========= Certificates ========= */
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .certificate-card {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .certificate-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        /* ========= Contact ========= */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid var(--gray);
+            border-radius: 8px;
+            background: var(--card-bg);
+            color: var(--dark);
+            transition: var(--transition);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px var(--primary-light);
+        }
+
+        /* ========= Footer ========= */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+
+        .dark-theme footer {
+            background: #030712;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background: var(--gradient);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            margin-top: 30px;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* ========= Responsive ========= */
+        @media (max-width: 992px) {
+            h1 { font-size: 2.8rem; }
+            h2 { font-size: 2.2rem; }
+
+            .hero-image { width: 40%; }
+
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 0;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+
+            .timeline-dot {
+                left: 20px !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links li {
+                margin: 0;
+            }
+
+            .hero {
+                text-align: center;
+                padding-top: 100px;
+            }
+
+            .hero-content {
+                margin: 0 auto;
+            }
+
+            .hero-image {
+                display: none;
+            }
+
+            .hero-btns {
+                justify-content: center;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.8rem; }
+            section { padding: 60px 0; }
+
+            .modal-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ========== HEADER ========== -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html"> Sara Alqethami</a>
+            </div> 
+            <ul class="nav-links">
+                <!-- تقدرين تغيّرين أسماء الأقسام هنا -->
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- ========== HERO SECTION ==========
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+              
+                <h1>Sara Alqethami</h1>
+                <h3> AI Specialist &amp; Researcher</h3>
+                   
+
+                <p>                    Welcome to my portfolio!                    </p>
+                <div class="hero-btns">
+                    <a href="pdf/Sara Alqethami CV.pdf" class="btn">View My CV</a>
+                    <a href="#contact" class="btn btn-outline">Contact Me</a>
+                </div>
+            </div>
+        </div> -->
+
+<section class="hero" id="home">
+    <div class="hero-content">
+
+        <!-- النص المتحرك -->
+        <h1 class="hero-animated-text">
+            <span id="typedText"></span>
+            <span class="typing-cursor">|</span>
+        </h1>
+
+        <!-- الاسم -->
+
+        <!-- المسمى -->
+        <h3 class="hero-subtitle">AI Specialist & Researcher</h3>
+
+        <!-- وصف قصير -->
+        <p class="hero-intro">
+            Welcome to my portfolio — where I share my work in AI, research, and data-driven solutions.
+        </p>
+
+        <!-- الأزرار -->
+        <div class="hero-btns">
+            <a href="assets/CV.pdf" class="btn">View My CV</a>
+            <a href="#contact" class="btn-outline">Contact Me</a>
+        </div>
+
+    </div>
+</section>
+
+
+
+
+        <!-- استبدلي الصورة برابط صورتك أو صورة مناسبة 
+        <img src="https://placehold.co/600x800/4f46e5/ffffff?text=S.A."
+             alt="Professional portrait of Sara Alqethami"
+             class="hero-image" />-->
+    </section>
+
+    <!-- ========== ABOUT SECTION ========== -->
+   <!--  <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+                </p>
+            </div>
+            <div class="about-grid">
+                <div class="about-image">
+                    - غيّري هذه الصورة لأي صورة ثانية 
+                    <img src="https://placehold.co/600x700/4f46e5/ffffff?text=About+Sara"
+                         alt="Sara Alqethami working on AI research" />
+                </div>
+                <div class="about-content">
+                   
+                    <p> I am an AI Specialist with an MSc in Artificial Intelligence (First Class Honors, GPA 3.98/4.00) from Umm Al-Qura University. I have worked on research and technical projects in the field of artificial intelligence, focusing on developing practical solutions using machine learning, computer vision, natural language processing, and data analytics.
+                    I have published six peer-reviewed research papers and contributed to the development of integrated AI systems and tools that support data-driven decision-making. I also hold several professional certifications in generative AI, data management, and data analytics.
+                    I am passionate about leveraging AI to solve complex challenges and create meaningful, sustainable impact.</p>
+
+                    <div class="about-stats">
+                        <div class="stat">
+                            <h4>6+</h4>
+                            <p>Published Papers</p>
+                        </div>
+                        <div class="stat">
+                            <h4>5+</h4>
+                            <p>Projects Delivered</p>
+                        </div>
+                        <div class="stat">
+                            <h4>6+</h4>
+                            <p>Certifications</p>
+                        </div>
+                            <div class="stat">
+                            <h4>2</h4>
+                            <p>BootCamps</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section> -->
+
+
+<section id="about">
+    <div class="container">
+        <div class="section-title">
+            <h2>About Me</h2>
+            <p>Professional Summary</p>
+        </div>
+
+        <!-- يسار نبذة + يمين شهادات -->
+        <div class="about-layout">
+            <!-- اليسار: النبذة -->
+            <div class="about-main">
+                <p>
+                    I am an AI Specialist with an MSc in Artificial Intelligence (First Class Honors, GPA 3.98/4.00) from Umm Al-Qura University. 
+                    I have worked on research and technical projects in the field of artificial intelligence, focusing on developing practical 
+                    solutions using machine learning, computer vision, natural language processing, and data analytics.
+                </p>
+                <p>
+                    I have published six peer-reviewed research papers and contributed to the development of integrated AI systems and tools that 
+                    support data-driven decision-making. I also hold several professional certifications in generative AI, data management, and 
+                    data analytics. I am passionate about leveraging AI to solve complex challenges and create meaningful, sustainable impact.
+                </p>
+            </div>
+
+            <!-- اليمين: كروت الشهادات -->
+            <div class="about-certs">
+                <h4>Key Certifications</h4>
+                <div class="about-certs-grid">
+                    <div class="cert-card">
+                        <div class="cert-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="cert-info">
+                            <h5>NVIDIA Certified Associate</h5>
+                            <p>Generative AI with LLMs</p>
+                        </div>
+                    </div>
+
+                    <div class="cert-card">
+                        <div class="cert-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="cert-info">
+                            <h5>NVIDIA Certified Associate</h5>
+                            <p>Generative AI with Multimodal</p>
+                        </div>
+                    </div>
+
+                    <div class="cert-card">
+                        <div class="cert-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="cert-info">
+                            <h5>DAMA Certification</h5>
+                            <p>Data Management Professional</p>
+                        </div>
+                    </div>
+
+                    <div class="cert-card">
+                        <div class="cert-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <div class="cert-info">
+                            <h5>Google Professional Certificate</h5>
+                            <p>Data Analytics</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- تحت بالنص: مربع الإحصائيات -->
+        <div class="about-stats-wrapper">
+            <div class="about-stats-box">
+                <div class="stat-item">
+                    <h4>6+</h4>
+                    <p>Published Papers</p>
+                </div>
+                <div class="stat-item">
+                    <h4>5+</h4>
+                    <p>Projects Delivered</p>
+                </div>
+                <div class="stat-item">
+                    <h4>6+</h4>
+                    <p>Certifications</p>
+                </div>
+                <div class="stat-item">
+                    <h4>2</h4>
+                    <p>Bootcamps</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- ========== SKILLS SECTION ========== -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-title">
+                <h2>Skills &amp; Expertise</h2>
+                <p>My technical and professional capabilities</p>
+            </div>
+            <div class="skills-grid">
+                <!-- مهارات البرمجة -->
+                <div class="skill-category">
+                    <h4>Programming</h4>
+                    <div class="skill">
+                        <div class="skill-name"><span>Python</span></div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name"><span>SQL (Query Language)</span></div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="80%"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ML & DL -->
+                <div class="skill-category">
+                    <h4>ML &amp; Deep Learning</h4>
+                    <div class="skill">
+                        <div class="skill-name"><span>Scikit-Learn</span></div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name"><span>TensorFlow</span></div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name"><span>PyTorch</span></div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="80%"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- NLP & LLMs -->
+                <div class="skill-category">
+                    <h4>NLP &amp; LLMs</h4>
+                    <div class="skill">
+                        <div class="skill-name"><span>Transformers</span></div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name"><span>Hugging Face</span></div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="80%"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name"><span>RAG</span></div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="80%"></div>
+                        </div>
+                    </div>
+                     <div class="skill">
+                        <div class="skill-name"><span>Fine-tuning</span></div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="80%"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Soft skills -->
+                <div class="skill-category">
+                    <h4>Soft Skills</h4>
+                    <div class="skill">
+                        <div class="skill-name"><span>Technical writing &amp; reporting</span></div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="100%"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name"><span>Cross-functional collaboration</span></div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="100%"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name"><span>Research collaboration &amp; publications</span></div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="100%"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name"><span>Fast learning &amp; adaptability</span></div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="100%"></div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PROJECTS SECTION ========== -->
+    <section id="projects" style="background: rgba(236, 72, 153, 0.05);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Projects</h2>
+                <p>My innovative AI projects and research initiatives</p>
+            </div>
+
+            <!-- أزرار الفلترة -->
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="ai-ml">AI/ML</button>
+                <button class="filter-btn" data-filter="computer-vision">Computer Vision</button>
+                <button class="filter-btn" data-filter="nlp">NLP/LLM</button>
+                <button class="filter-btn" data-filter="research">Research</button>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card" data-category="ai-ml computer-vision">
+                    <img src="https://placehold.co/600x400/4f46e5/ffffff?text=Road+Vision"
+                         alt="Road Vision System mobile app interface showing road damage detection"
+                         class="project-image" />
+                    <div class="project-overlay">
+                        <h4>Road Vision System</h4>
+                        <p>Mobile application for detecting road damages using AI with 90% accuracy.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">AI</span>
+                            <span class="project-tag">Computer Vision</span>
+                            <span class="project-tag">VR</span>
+                        </div>
+                        <a href="#" class="view-project" data-project="1">View Project</a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card" data-category="ai-ml computer-vision">
+                    <img src="https://placehold.co/600x400/ec4899/ffffff?text=Wastlytic"
+                         alt="Wastlytic dashboard showing waste monitoring analytics"
+                         class="project-image" />
+                    <div class="project-overlay">
+                        <h4>Wastlytic</h4>
+                        <p>AI Dashboard for Waste Monitoring During Hajj</p>
+                        <div class="project-tags">
+                            <span class="project-tag">AI</span>
+                            <span class="project-tag">Dashboard</span>
+                            <span class="project-tag">Object Detection</span>
+                        </div>
+                        <a href="#" class="view-project" data-project="2">View Project</a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card" data-category="research">
+                    <img src="https://placehold.co/600x400/10b981/ffffff?text=RehlaTech"
+                         alt="RehlaTech app interface for female pilgrims"
+                         class="project-image" />
+                    <div class="project-overlay">
+                        <h4>RehlaTech</h4>
+                        <p>E-Application for female pilgrims and visitors of Al-Masjid Al Haram</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Research</span>
+                            <span class="project-tag">Mobile App</span>
+                            <span class="project-tag">Hajj Services</span>
+                        </div>
+                        <a href="#" class="view-project" data-project="3">View Project</a>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card" data-category="ai-ml nlp">
+                    <img src="https://placehold.co/600x400/3b82f6/ffffff?text=Madarik"
+                         alt="Data extraction pipeline visualization"
+                         class="project-image" />
+                    <div class="project-overlay">
+                        <h4>Madarik</h4>
+                        <p>Intelligent system for automated deep search, analysis, and AI-generated reports.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">LLMs</span>
+                        <span class="project-tag">NLP</span>
+                        <span class="project-tag">Automation</span>
+                    </div>
+                        <a href="#" class="view-project" data-project="4">View Project</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PUBLICATIONS SECTION ========== -->
+<section id="publications">
+    <div class="container">
+        <div class="section-title">
+            <h2>Publications</h2>
+            <p>Selected peer-reviewed research contributions</p>
+        </div>
+
+        <ul class="publications-list">
+            <li class="publication-item">
+                <a href="https://www.mdpi.com/2076-3417/14/19/8813" target="_blank">
+                <h4>ExamVoice: Innovative Solutions for Improving Exam Accessibility for Blind and Visually Impaired Students in Saudi Arabia</h4>
+                </a>                
+                <p class="publication-meta"><em>Applied Sciences</em>, 2024; 14(19): 8813.</p>
+            </li>
+
+            <li class="publication-item">
+                <a href="https://www.researchgate.net/profile/Walla-Al-Eidarous/publication/380541307_Enhancing_E-commerce_Security_A_Comprehensive_Approach_to_Real-_Time_Fraud_Detection/links/6642aa4406ea3d0b7466a277/Enhancing-E-commerce-Security-A-Comprehensive-Approach-to-Real-Time-Fraud-Detection.pdf" target="_blank">
+                <h4>Enhancing E-commerce Security: A Comprehensive Approach to Real-Time Fraud Detection</h4>
+                </a>
+                <p class="publication-meta"><em>IJCSNS International Journal of Computer Science and Network Security</em>, Vol. 24, No. 4.</p>
+            </li>
+
+            <li class="publication-item">
+            <a href="http://127.0.0.1:5502/assets/rehlatech/resarchpaper.pdf" target="_blank">
+                <h4>RehlaTech: E-Application for Female Pilgrims and Visitors of Al-Masjid Al Haram</h4>
+                </a>
+                <p class="publication-meta"><em>Institute for Hajj and Umrah Research</em>, Hajj & Umrah Research context.</p>
+            </li>
+
+            <li class="publication-item">
+            <a href="https://www.mdpi.com/2076-3417/12/22/11529" target="_blank">
+                <h4>RoadNet: Efficient Model to Detect and Classify Road Damages</h4>
+            </a>
+                <p class="publication-meta"><em>Applied Sciences</em>, 2022; 12(22): 11529.</p>
+            </li>
+
+            <li class="publication-item">
+                <a href="https://mail.etasr.com/index.php/ETASR/article/view/4721" target="_blank">
+                <h4>Disease Detection in Apple Leaves Using Image Processing Techniques</h4>
+                </a>
+                <p class="publication-meta">
+                    <em>Engineering, Technology &amp; Applied Science Research</em>, 12(2), 8335–8341.
+                </p>
+            </li>
+        </ul>
+
+        <div class="publications-footer">
+            <p>For a complete list of publications and up-to-date metrics, please visit my Google Scholar profile:</p>
+            <a href="https://scholar.google.com/citations?user=e--VuLAAAAAJ&hl=ar" target="_blank" class="btn btn-outline">
+                <i class="fas fa-graduation-cap"></i>
+                View on Google Scholar
+            </a>
+        </div>
+    </div>
+</section>
+
+    <!-- ========== CERTIFICATES SECTION ========== 
+    <section id="certificates">
+        <div class="container">
+            <div class="section-title">
+                <h2>Certificates</h2>
+                <p>My professional certifications and qualifications</p>
+            </div>
+            <div class="certificates-grid">
+                <div class="certificate-card card">
+                    <div class="certificate-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h4>NVIDIA Certified Associate</h4>
+                    <p>Generative AI with LLMs</p>
+                </div>
+                <div class="certificate-card card">
+                    <div class="certificate-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h4>DAMA Certified</h4>
+                    <p>Data Management Professional</p>
+                </div>
+                <div class="certificate-card card">
+                    <div class="certificate-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h4>Huawei Certified ICT Associate</h4>
+                    <p>Artificial Intelligence (HCIA-AI) v3.0</p>
+                </div>
+                <div class="certificate-card card">
+                    <div class="certificate-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h4>NVIDIA Certified Associate</h4>
+                    <p>Generative AI with Multimodal</p>
+                </div>
+                <div class="certificate-card card">
+                    <div class="certificate-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h4>Google Professional Certificate</h4>
+                    <p>Data Analytics</p>
+                </div>
+                <div class="certificate-card card">
+                    <div class="certificate-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h4>McKinsey Forward Program</h4>
+                    <p>Business Leadership</p>
+                </div>
+            </div>
+        </div>
+    </section>-->
+
+
+      <!-- ========== EXPERIENCE SECTION ========== -->
+    <section id="experience" style="background: rgba(79, 70, 229, 0.05);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Work Experience</h2>
+                <p>My professional journey in AI and research</p>
+            </div>
+            <div class="timeline">
+                <!-- خبرة 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content card">
+                        <h4>Artificial Intelligence Specialist</h4>
+                        <p class="timeline-date">Sep 2024 - Present</p>
+                        <p><strong>Confidential Government</strong> | Riyadh, Saudi Arabia</p>
+                        <p>Applied AI systems for secure data and network analysis, conducted large-scale data analytics using Excel and Python, and contributed to enhancing existing systems through evaluation, ideation, and continuous improvement. Produced research-based insights and technical reports to support data-driven decision-making.</p>
+                    </div>
+                </div>
+                <!-- خبرة 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content card">
+                        <h4>Researcher / Data Analyst</h4>
+                        <p class="timeline-date">Aug 2022 - Dec 2022</p>
+                        <p><strong>Institute for Hajj and Umrah Research</strong> | Makkah, Saudi Arabia</p>
+                        <p>Conducted data collection and analysis on Hajj services, co-authored a peer-reviewed paper, and defined core services for a mobile app for female pilgrims.</p>
+                    </div>
+                </div>
+                <!-- خبرة 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content card">
+                        <h4>AI Researcher</h4>
+                        <p class="timeline-date">Feb 2022 - May 2022</p>
+                        <p><strong>Rabigh Municipality</strong> | Rabigh, Saudi Arabia</p>
+                        <p>Collected and labeled the first Saudi dataset on road surface damages, developed RoadNet (CNN model) achieving 90% accuracy, and published findings in a peer-reviewed journal.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONTACT SECTION ========== -->
+    <section id="contact" style="background: rgba(16, 185, 129, 0.05);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Me</h2>
+                <p>Get in touch for collaborations or inquiries</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Riyadh, Saudi Arabia</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+966561419603</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>sara_alqethami@hotmail.com</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- فورم بسيط (ما يرسل فعلياً، بس رسالة تنبيه) -->
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <input type="text" placeholder="Your Name" required />
+                        <input type="email" placeholder="Your Email" required />
+                        <input type="text" placeholder="Subject" />
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="social-links">
+                    <!-- غيّري الروابط هنا -->
+                    <a href="https://www.linkedin.com/in/sara-alqethami" class="social-link" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/ssq-94" class="social-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://x.com/Sara_ssq20" class="social-link"><i class="fab fa-twitter"></i></a>
+                </div>
+                <p class="copyright">© 2026 Sara Alqethami. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== PROJECT MODAL ========== -->
+    <!-- <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h3 id="modalTitle">Project Title</h3>
+                <p id="modalSubtitle">Project Category &amp; Date</p>
+            </div>
+            <img src="" alt="Project detailed view" id="modalImage" class="modal-image" />
+            <div class="modal-gallery">
+                <img src="assets/roadvision/MacBook Pro - 3.png"/>
+                <img src="assets/roadvision/Dashboard.png"/>
+                <img src="assets/roadvision/Dashboard (1).png" />
+            </div>
+
+
+            <div id="modalContent">
+                <p>Project description will be loaded here...</p>
+            </div>
+        </div>
+    </div>-->
+
+    <!-- ========== PROJECT MODAL ========== -->
+
+    <div id="projectModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+
+        <h2 id="modalTitle"></h2>
+        <p id="modalSubtitle"></p>
+
+       <!--  <img id="modalImage" class="modal-main-image"> -->
+        <img id="modalImage" class="modal-image" alt="Project detailed view">
+
+
+        <div id="modalGallery" class="modal-gallery"></div>
+
+        <div id="modalContent"></div>
+    </div>
+</div>
+
+    <!-- ========== SCRIPTS ========== -->
+    <script>
+        // تبديل الثيم (فاتح / داكن)
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            if (document.body.classList.contains('dark-theme')) {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+        });
+
+        // فلترة المشاريع
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const filter = button.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    if (filter === 'all') {
+                        card.style.display = 'block';
+                    } else {
+                        const categories = card.getAttribute('data-category').split(' ');
+                        if (categories.includes(filter)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+
+        // بيانات المشاريع للـ Modal
+       
+        //  const modal = document.getElementById('projectModal'); 
+        // const viewProjectButtons = document.querySelectorAll('.view-project');
+       // const closeModal = document.querySelector('.close-modal');
+        //const modalGallery = document.getElementById('modalGallery'); 
+
+        const projects = {
+            1: {
+                title: "Road Vision System",
+                subtitle: "AI/ML · Computer Vision · 2024",
+                image: "assets/roadvision/road-vision-app.png",
+                gallery: [
+                    "assets/roadvision/MacBook Pro - 3.png",
+                    "assets/roadvision/Dashboard.png",
+                    "assets/roadvision/Dashboard (1).png"
+                ],
+                content:
+                    "<p>A mobile and dashboard-based system that uses AI and AR to detect, measure, and prioritize road surface damages with high accuracy, enabling municipalities to automate inspections, generate maintenance reports, and make data-driven decisions.</p>" +
+
+                    "<br><h4>Impact</h4>" +
+                    "<ul>" +
+                        "<li>Achieved ~90% model accuracy.</li>" +
+                        "<li>Reduced manual inspection effort by around 60%.</li>" +
+                        "<li>Automated reporting and enabled centralized monitoring for maintenance teams.</li>" +
+                        "<li>Improved prioritization and data-driven decision-making.</li>" +
+                    "</ul>" +
+
+                    "<br><h4>Tech Stack</h4>" +
+                    "<ul>" +
+                        "<li>Computer Vision Models</li>" +
+                        "<li>AR (Unity)</li>" +
+                        "<li>Android Mobile App</li>" +
+                        "<li>Dashboard for Visualization & Reporting</li>" +
+                    "</ul>" +
+
+                    "<br><h4>Funding & Support</h4>" +
+                    "<p>Supported by the MISK Foundation.</p>" +
+
+                    "<p><strong>Outputs:</strong> " +
+                    "<span class='output-links'>" +
+                        "<a href='https://roadvision.carrd.co/#' target='_blank'>App</a> · " +
+                        "<a href='https://youtu.be/ulO_jnJP1So' target='_blank'>Demo</a> · " +
+                        "<a target='_blank'>Pitch Deck</a> · " +
+                        "<a href='https://www.mdpi.com/2076-3417/12/22/11529' target='_blank'>Research Paper</a>" +
+                    "</span>"
+
+             },
+
+            2: {
+                title: "Wastlytic",
+                subtitle: "AI/ML · Visual Intelligence · 2023",
+                image: "assets/wastelytic/wastelyticpage1.png",
+                content:
+                    "<p>An AI-powered dashboard that detects and classifies waste in real-time using camera feeds installed in Al-Masjid Al-Haram, supporting monitoring and management during Hajj.</p>" +
+
+                "<br><h4>Impact</h4>" +
+                "<ul>" +
+                    "<li>Achieved over 90% accuracy for waste detection and classification.</li>" +
+                    "<li>Enabled real-time alerts and reporting to support rapid response for cleanliness teams.</li>" +
+                "</ul>" +
+
+                "<br><h4>Tech Stack</h4>" +
+                "<ul>" +
+                    "<li>Computer Vision Models</li>" +
+                    "<li>Dashboard </li>" +
+                    "<li>Real-Time Data Analysis & Visualization</li>" +
+                    "<li>Reporting & Alerting Modules</li>" +
+                "</ul>" +
+
+                    "<br><h4>Funding & Support</h4>" +
+                    "<p>Supported by the Ministry of Hajj and Umrah’s business accelerator.</p>" +
+
+                    "<p><strong>Outputs:</strong> " +
+                    "<span class='output-links'>" +
+                        "<a target='_blank'>Dashboard (Private)</a> · " +
+                        "<a href='https://youtu.be/80CHcNyW2sQ' target='_blank'>Demo</a> " +
+                    "</span>"            
+                },
+
+            3: {
+                title: "RehlaTech",
+                subtitle: "Research · Mobile App · 2022",
+                image: "assets/rehlatech/rehlatechpage.png",
+                content:
+                    "<p>A research-driven project focused on enhancing services for female pilgrims through a dedicated e-application developed after an in-depth study of their needs during Hajj.</p>" +
+
+                    "<br><h4>Impact</h4>" +
+                    "<ul>" +
+                        "<li>Conducted comprehensive research on the needs and challenges of female pilgrims during Hajj.</li>" +
+                        "<li>Published a peer-reviewed research paper presented at the Hajj and Umrah Research Conference (2022).</li>" +
+                        "<li>The study received media coverage highlighting its role in improving women's services during Hajj.</li>" +
+                        "<li>Defined core service requirements that were later transformed into a functional mobile application.</li>" +
+                    "</ul>" +
+
+                    "<br><h4>Research Context</h4>" +
+                    "<p>Conducted at the Institute for Hajj and Umrah Research as part of efforts to enhance the experience of female pilgrims through technology-driven solutions.</p>" +
+                
+                "<p><strong>Outputs:</strong> " +
+                    
+                    "<span class='output-links'>" +
+                    "<a href='https://play.google.com/store/apps/details?id=com.rehla.rehlatech&hl=ar' target='_blank'>Google Play</a> · " +
+                    "<a href='https://apps.apple.com/si/app/rehlatech/id6444261160' target='_blank'>iOS App</a> · " +
+                    "<a href='https://makkahnewspaper.com/article/1581829/%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D9%84%D9%84%D9%85%D9%88%D9%82%D8%B9/%D9%85%D8%B9%D9%87%D8%AF-%D8%A7%D8%A8%D8%AD%D8%A7%D8%AB-%D8%A7%D9%84%D8%AD%D8%AC-%D9%8A%D9%86%D8%B8%D9%85-%D8%A7%D9%84%D9%85%D9%84%D8%AA%D9%82%D9%89-%D8%A7%D9%84-%D9%A2%D9%A2-%D8%A7%D9%84%D8%B9%D9%85%D8%B1%D9%88-%D9%84%D9%85%D9%83%D8%A9-%D8%A7%D8%AB%D8%B1%D8%A7%D8%A1-%D9%88%D8%AA%D8%B9%D9%85%D9%8A%D9%82-%D8%AA%D8%AC%D8%B1%D8%A8%D8%A9-%D8%B6%D9%8A%D9%88%D9%81-%D8%A7%D9%84%D8%B1%D8%AD%D9%85%D9%86-%D9%87%D8%AF%D9%81%D9%86%D8%A7' target='_blank'>Media Coverage</a> · " +
+                    "<a href='assets/rehlatech/resarchpaper.pdf' target='_blank'>Research Paper</a>" +
+                    "</span>"           
+               },
+
+
+            4: {
+                title: "AI Research & Reporting Automation System",
+                subtitle: "LLMs · NLP · Automation · 2025",
+                image: "assets/madarik/madarikpage.png",
+                gallery: [
+                    "assets/madarik/orderpage.png",
+                    "assets/madarik/searchingpage.png"
+                ],
+                content:
+                        "<p>A self-developed AI system designed to automate deep search, data gathering, content analysis, and multilingual report generation using advanced LLM capabilities.</p>" +
+
+                        "<br><h4>Goal</h4>" +
+                        "<ul>" +
+                            "<li>Build an end-to-end automated pipeline for generating structured analytical reports with minimal manual effort.</li>" +
+                            "<li>Demonstrate advanced skills in large language models, retrieval workflows, and intelligent automation.</li>" +
+                        "</ul>" +
+
+                        "<br><h4>Key Features</h4>" +
+                        "<ul>" +
+                            "<li>AI-generated reports (Arabic & English) with clear structure, citations, and coherent formatting.</li>" +
+                            "<li>Deep search automation to collect information from multiple validated sources.</li>" +
+                            "<li>Content analysis, summarization, key-point extraction, and insight generation.</li>" +
+                            "<li>Multilingual processing: automatic translation, alignment, and terminology consistency.</li>" +
+                            "<li>Export to multiple formats such as PDF, Word, and PowerPoint.</li>" +
+                        "</ul>" +
+
+                        "<br><h4>Tech Stack</h4>" +
+                        "<ul>" +
+                            "<li>Large Language Models (LLMs)</li>" +
+                            "<li>NLP Pipelines for summarization & text classification</li>" +
+                            "<li>Automated search & retrieval workflows</li>" +
+                            "<li>Document generation & formatting modules</li>" +
+                        "</ul>" +
+
+                        "<br><h4>Outputs</h4>" +
+                        "<p> UI Design · System Workflow · Demo (Coming Soon)</p>"
+                }          
+        };
+
+        
+
+            // فتح الـ Modal
+            // عناصر الواجهة
+            const modal = document.getElementById('projectModal');
+            const viewProjectButtons = document.querySelectorAll('.view-project');
+            const closeModal = document.querySelector('.close-modal');
+            const modalGallery = document.getElementById('modalGallery');
+
+            // فتح الـ Modal
+            viewProjectButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    const projectId = button.getAttribute('data-project');
+                    const project = projects[projectId];
+
+                    // تعبئة البيانات
+                    document.getElementById('modalTitle').textContent = project.title;
+                    document.getElementById('modalSubtitle').textContent = project.subtitle;
+                    document.getElementById('modalImage').src = project.image;
+                    document.getElementById('modalContent').innerHTML = project.content;
+
+                    // الصور الإضافية
+                    modalGallery.innerHTML = "";
+                    if (project.gallery) {
+                        project.gallery.forEach(src => {
+                            const img = document.createElement("img");
+                            img.src = src;
+                            modalGallery.appendChild(img);
+                        });
+                    }
+
+                    modal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+
+            // إغلاق الـ Modal
+            closeModal.addEventListener('click', () => {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+
+        // تشغيل البارات حق المهارات لما القسم يظهر
+        const skillBars = document.querySelectorAll('.skill-progress');
+
+        function animateSkillBars() {
+            skillBars.forEach(bar => {
+                const width = bar.getAttribute('data-width');
+                bar.style.width = width;
+            });
+        }
+
+        const skillsSection = document.getElementById('skills');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateSkillBars();
+                }
+            });
+        }, { threshold: 0.5 });
+
+        observer.observe(skillsSection);
+
+        // فورم التواصل (تنبيه فقط)
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            e.target.reset();
+        });
+
+
+    // تحيات بعدة لغات – مثل الفكرة الموجودة في الموقع اللي أرسلتيه
+// عنصر النص المتحرك
+const typedTextEl = document.getElementById("typedText");
+
+// الجمل اللي راح تتكرر بكل لغة – كلها "مرحباً أنا سارة" بصيغ مختلفة
+const greetings = [
+  "Hello, I'm Sara.",
+  "مرحباً، أنا سارة.",
+  "Bonjour, je suis Sara.",
+  "Hola, soy Sara.",
+  "Ciao, sono Sara.",
+  "Hallo, ich bin Sara.",
+  "こんにちは、サラです。",
+  "안녕하세요, 저는 사라입니다."
+];
+
+let currentIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+let typingDelay = 120;   // سرعة الكتابة
+let eraseDelay = 60;     // سرعة المسح
+let pauseDelay = 1200;   // وقفة بعد ما تخلص الجملة
+
+function type() {
+  const current = greetings[currentIndex];
+  
+  if (!isDeleting) {
+    // نكتب
+    typedTextEl.textContent = current.substring(0, charIndex + 1);
+    charIndex++;
+    
+    if (charIndex === current.length) {
+      // بعد ما تخلص الجملة – نوقف شوي ثم نبدأ مسح
+      isDeleting = true;
+      setTimeout(type, pauseDelay);
+      return;
+    }
+  } else {
+    // نمسح
+    typedTextEl.textContent = current.substring(0, charIndex - 1);
+    charIndex--;
+    
+    if (charIndex === 0) {
+      isDeleting = false;
+      currentIndex = (currentIndex + 1) % greetings.length; // ننتقل للجملة اللي بعدها
+    }
+  }
+  
+  setTimeout(type, isDeleting ? eraseDelay : typingDelay);
+}
+
+// نبدأ الأنيميشن بعد ما تتحمل الصفحة
+document.addEventListener("DOMContentLoaded", () => {
+  type();
+});
+
+
+
+    </script>
+</body>
+</html>
